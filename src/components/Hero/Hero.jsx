@@ -1,9 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import GPUVisual3D from "../GPUVisual3D/GPUVisual3D";
 
 const Hero = () => {
+  const titles = [
+    "Componentes de alta gama",
+    "Gaming sin límites",
+    "Construye tu PC ideal",
+    "Tecnología premium",
+  ];
+
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    const currentTitle = titles[currentTitleIndex];
+
+    if (isTyping) {
+      if (displayText.length < currentTitle.length) {
+        const timer = setTimeout(() => {
+          setDisplayText(currentTitle.slice(0, displayText.length + 1));
+        }, 80);
+        return () => clearTimeout(timer);
+      } else {
+        const timer = setTimeout(() => setIsTyping(false), 3000);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      if (displayText.length > 0) {
+        const timer = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1));
+        }, 40);
+        return () => clearTimeout(timer);
+      } else {
+        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+        setIsTyping(true);
+      }
+    }
+  }, [displayText, isTyping, currentTitleIndex, titles]);
+
   return (
     <section className="pt-20 pb-16 min-h-screen flex items-center bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,14 +61,10 @@ const Hero = () => {
               Último en tecnología
             </motion.div>
 
-            <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              Los mejores componentes para tu PC
-            </motion.h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 min-h-[1.2em]">
+              {displayText}
+              <span className="inline-block w-0.5 h-[0.9em] bg-gray-900 ml-1 animate-pulse opacity-75"></span>
+            </h1>
 
             <motion.p
               className="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed"
