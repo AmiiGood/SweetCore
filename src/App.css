@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+.gpu-image {
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gpu-image:hover {
+  filter: drop-shadow(0 35px 60px rgba(0, 0, 0, 0.2))
+    drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15)) brightness(1.05);
+}
+
+.gpu-glow::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.1),
+    rgba(147, 51, 234, 0.1),
+    rgba(59, 130, 246, 0.1)
+  );
+  border-radius: 20px;
+  filter: blur(20px);
+  z-index: -1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
