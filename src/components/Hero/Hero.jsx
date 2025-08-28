@@ -51,16 +51,6 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div
-              className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-8"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              <Zap size={16} />
-              Último en tecnología
-            </motion.div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 min-h-[1.2em]">
               {displayText}
               <span className="inline-block w-0.5 h-[0.9em] bg-gray-900 ml-1 animate-pulse opacity-75"></span>
