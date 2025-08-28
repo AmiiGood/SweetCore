@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 
-const Navbar = () => {
+const Navbar = ({ onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -90,6 +90,13 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleAuthNavigation = (mode) => {
+    if (onNavigate) {
+      onNavigate(mode);
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   const navItems = [
     { id: "productos", label: "Productos" },
     { id: "ensambles", label: "Ensambles" },
@@ -154,18 +161,22 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={() => scrollToSection("contacto")}
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+            <motion.button
+              onClick={() => handleAuthNavigation("login")}
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors px-4 py-2 rounded-lg hover:bg-gray-50"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Iniciar Sesión
-            </button>
-            <button
-              onClick={() => scrollToSection("contacto")}
+            </motion.button>
+            <motion.button
+              onClick={() => handleAuthNavigation("register")}
               className="bg-gray-900 text-white px-6 py-2 rounded-md hover:bg-gray-700 font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Registrarse
-            </button>
+            </motion.button>
           </div>
 
           <div className="md:hidden">
@@ -179,7 +190,13 @@ const Navbar = () => {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden">
+          <motion.div
+            className="md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
               {navItems.map((item) => (
                 <button
@@ -197,20 +214,20 @@ const Navbar = () => {
               ))}
               <div className="pt-4 pb-3 border-t border-gray-200 space-y-2">
                 <button
-                  onClick={() => scrollToSection("contacto")}
+                  onClick={() => handleAuthNavigation("login")}
                   className="w-full text-left text-gray-600 hover:text-gray-900 px-3 py-3 text-base font-medium rounded-lg hover:bg-gray-50 transition-all"
                 >
                   Iniciar Sesión
                 </button>
                 <button
-                  onClick={() => scrollToSection("contacto")}
+                  onClick={() => handleAuthNavigation("register")}
                   className="w-full bg-gray-900 text-white px-3 py-3 mt-2 rounded-lg text-base font-medium hover:bg-gray-700 transition-all"
                 >
                   Registrarse
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </nav>

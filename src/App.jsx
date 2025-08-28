@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import ProductShowcase from "./components/ProductShowcase/ProductShowcase";
+import AuthPage from "./components/AuthPage/AuthPage";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const navigateTo = (page) => {
+    setCurrentPage(page);
+  };
+
+  const goHome = () => {
+    setCurrentPage("home");
+  };
+
+  if (currentPage === "login" || currentPage === "register") {
+    return (
+      <div className="App">
+        <AnimatePresence mode="wait">
+          <AuthPage key={currentPage} mode={currentPage} onBack={goHome} />
+        </AnimatePresence>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
-      <Navbar />
+      <Navbar onNavigate={navigateTo} />
+
       <div id="hero">
         <Hero />
       </div>
+
       <ProductShowcase />
 
       <section id="ensambles" className="py-20 bg-white">
