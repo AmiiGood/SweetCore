@@ -79,7 +79,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
   const handleCheckout = () => {
     showInfo(
       "Checkout próximamente",
-      "¡La función de pago estará disponible muy pronto! 🚀",
+      "La función de pago estará disponible muy pronto",
       {
         duration: 4000,
         action: {
@@ -203,7 +203,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                           <div className="flex flex-col items-end gap-2">
                             <motion.button
                               onClick={() => handleRemoveItem(item)}
-                              className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                              className="p-1 text-gray-400 hover:text-gray-950 transition-colors"
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                             >
@@ -245,7 +245,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                     {items.length > 0 && (
                       <motion.button
                         onClick={handleClearCart}
-                        className="w-full py-2 text-sm text-gray-500 hover:text-red-500 transition-colors"
+                        className="w-full py-2 text-sm text-gray-500 hover:text-gray-500 transition-colors"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}

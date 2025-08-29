@@ -180,14 +180,14 @@ const ProductCard = ({ product, index }) => {
           <Heart
             size={18}
             className={`${
-              isFavorite ? "fill-red-500 text-red-500" : "text-gray-600"
+              isFavorite ? "fill-gray-950 text-gray-950" : "text-gray-600"
             } transition-colors duration-300`}
           />
         </motion.button>
 
         {itemQuantity > 0 && (
           <motion.div
-            className="absolute top-4 right-16 z-10 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full"
+            className="absolute top-4 right-16 z-10 bg-gray-950 text-white text-xs font-bold px-2 py-1 rounded-full"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 500, damping: 15 }}
@@ -331,7 +331,7 @@ const ProductCard = ({ product, index }) => {
                 </motion.button>
 
                 <div className="flex items-center gap-2 px-2">
-                  <Check size={16} className="text-green-500" />
+                  <Check size={16} className="text-gray-950" />
                   <span className="font-semibold text-gray-900">
                     {itemQuantity}
                   </span>
