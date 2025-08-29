@@ -46,21 +46,6 @@ const AuthPage = ({ mode = "login", onBack }) => {
     });
   };
 
-  const stats = [
-    { icon: Users, value: "50K+", label: "Usuarios activos" },
-    { icon: Star, value: "4.9", label: "Rating promedio" },
-    { icon: TrendingUp, value: "98%", label: "Satisfacción" },
-  ];
-
-  const features = [
-    "Configurador de PC personalizado",
-    "Ofertas exclusivas para miembros",
-    "Comparador de precios en tiempo real",
-    "Seguimiento de pedidos avanzado",
-    "Soporte técnico prioritario",
-    "Garantía extendida gratuita",
-  ];
-
   const pageVariants = {
     initial: { opacity: 0 },
     animate: {

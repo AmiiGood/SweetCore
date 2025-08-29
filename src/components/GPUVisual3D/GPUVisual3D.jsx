@@ -55,7 +55,7 @@ function OptimizedGPUModel({ ...props }) {
     <group ref={group} {...props}>
       <primitive
         object={scene.clone()}
-        scale={[0.1, 0.1, 0.1]}
+        scale={window.innerWidth < 768 ? [0.08, 0.08, 0.08] : [0.1, 0.1, 0.1]}
         position={[0, 0, 0]}
         rotation={[0.1, 0.1, 0.2]}
       />
@@ -81,7 +81,7 @@ const GPUVisual3D = () => {
   return (
     <div className="flex justify-center items-center relative">
       <motion.div
-        className="w-full max-w-2xl h-[500px] relative"
+        className="w-full max-w-2xl h-[400px] sm:h-[450px] lg:h-[500px] relative"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
@@ -97,9 +97,9 @@ const GPUVisual3D = () => {
         <Canvas
           camera={{
             position: [0, 0.5, 2.5],
-            fov: 30,
+            fov: window.innerWidth < 768 ? 35 : 30,
           }}
-          dpr={[1, 2]}
+          dpr={[1, Math.min(window.devicePixelRatio, 2)]}
           gl={{
             antialias: true,
             alpha: true,
@@ -155,33 +155,45 @@ const GPUVisual3D = () => {
         </Canvas>
 
         <motion.div
-          className="absolute top-16 left-8 bg-white/95 backdrop-blur-sm border-0 rounded-lg px-3 py-2.5 shadow-lg text-xs z-20"
+          className="absolute top-8 sm:top-16 left-4 sm:left-8 bg-white/95 backdrop-blur-sm border-0 rounded-lg px-2 sm:px-3 py-2 sm:py-2.5 shadow-lg text-xs z-20"
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 4, repeat: Infinity, delay: 0 }}
         >
-          <div className="font-bold text-gray-900 mb-1">Memoria</div>
-          <div className="font-semibold text-blue-600">32GB VRAM</div>
-          <div className="text-gray-600">GDDR7</div>
+          <div className="font-bold text-gray-900 mb-1 text-xs sm:text-sm">
+            Memoria
+          </div>
+          <div className="font-semibold text-blue-600 text-xs sm:text-sm">
+            32GB VRAM
+          </div>
+          <div className="text-gray-600 text-xs">GDDR7</div>
         </motion.div>
 
         <motion.div
-          className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm border-0 rounded-lg px-3 py-2.5 shadow-lg text-xs z-20"
+          className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm border-0 rounded-lg px-2 sm:px-3 py-2 sm:py-2.5 shadow-lg text-xs z-20"
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 4, repeat: Infinity, delay: 1.3 }}
         >
-          <div className="font-bold text-gray-900 mb-1">Frecuencia</div>
-          <div className="font-semibold text-green-600">2.01 GHz</div>
-          <div className="text-gray-600">Boost Clock</div>
+          <div className="font-bold text-gray-900 mb-1 text-xs sm:text-sm">
+            Frecuencia
+          </div>
+          <div className="font-semibold text-green-600 text-xs sm:text-sm">
+            2.01 GHz
+          </div>
+          <div className="text-gray-600 text-xs">Boost Clock</div>
         </motion.div>
 
         <motion.div
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm border-0 rounded-lg px-3 py-2.5 shadow-lg text-xs z-20"
+          className="absolute bottom-8 sm:bottom-16 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm border-0 rounded-lg px-2 sm:px-3 py-2 sm:py-2.5 shadow-lg text-xs z-20"
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 4, repeat: Infinity, delay: 2.6 }}
         >
-          <div className="font-bold text-gray-900 mb-1">Arquitectura</div>
-          <div className="font-semibold text-gray-950-600">Blackwell</div>
-          <div className="text-gray-600">5nm TSMC</div>
+          <div className="font-bold text-gray-900 mb-1 text-xs sm:text-sm">
+            Arquitectura
+          </div>
+          <div className="font-semibold text-gray-950-600 text-xs sm:text-sm">
+            Blackwell
+          </div>
+          <div className="text-gray-600 text-xs">5nm TSMC</div>
         </motion.div>
       </motion.div>
     </div>

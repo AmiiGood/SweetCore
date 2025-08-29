@@ -44,20 +44,20 @@ const Hero = () => {
   return (
     <section className="pt-20 pb-16 min-h-screen flex items-center bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-12 items-center">
           <motion.div
-            className="lg:col-span-2 max-w-xl"
+            className="lg:col-span-2 max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 min-h-[1.2em]">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-4 lg:mb-6 min-h-[1.2em]">
               {displayText}
               <span className="inline-block w-0.5 h-[0.9em] bg-gray-900 ml-1 animate-pulse opacity-75"></span>
             </h1>
 
             <motion.p
-              className="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed"
+              className="text-base sm:text-lg lg:text-xl text-gray-600 mb-6 lg:mb-10 leading-relaxed px-4 sm:px-0"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -67,7 +67,7 @@ const Hero = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 mb-12"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 lg:mb-12 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
@@ -88,12 +88,12 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-              className="flex justify-center sm:justify-start gap-6 pt-8 border-t border-gray-200"
+              className="flex justify-center sm:justify-center lg:justify-start gap-6 pt-8 border-t border-gray-200"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <div className="text-center sm:text-left">
+              <div className="text-center">
                 <div className="text-2xl lg:text-3xl font-bold text-gray-900">
                   5000+
                 </div>
@@ -101,7 +101,7 @@ const Hero = () => {
                   Componentes
                 </div>
               </div>
-              <div className="text-center sm:text-left">
+              <div className="text-center">
                 <div className="text-2xl lg:text-3xl font-bold text-gray-900">
                   98%
                 </div>
@@ -109,7 +109,7 @@ const Hero = () => {
                   Satisfacción
                 </div>
               </div>
-              <div className="text-center sm:text-left">
+              <div className="text-center">
                 <div className="text-2xl lg:text-3xl font-bold text-gray-900">
                   24h
                 </div>
@@ -120,7 +120,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          <div className="lg:col-span-3 w-full">
+          <div className="lg:col-span-3 w-full order-first lg:order-last">
             <GPUVisual3D />
           </div>
         </div>
