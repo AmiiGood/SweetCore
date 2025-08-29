@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import CartButton from "../Cart/CartButton";
 
-const Navbar = ({ onNavigate }) => {
+const Navbar = ({ onNavigate, onCartToggle }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -106,7 +107,7 @@ const Navbar = ({ onNavigate }) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
           ? "bg-white/98 backdrop-blur-md border-b border-gray-200 shadow-sm"
           : "bg-white/95 backdrop-blur-sm border-b border-gray-100"
@@ -161,6 +162,8 @@ const Navbar = ({ onNavigate }) => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
+            <CartButton onClick={onCartToggle} />
+
             <motion.button
               onClick={() => handleAuthNavigation("login")}
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors px-4 py-2 rounded-lg hover:bg-gray-50"
@@ -179,7 +182,9 @@ const Navbar = ({ onNavigate }) => {
             </motion.button>
           </div>
 
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <CartButton onClick={onCartToggle} />
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-all"
