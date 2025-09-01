@@ -5,6 +5,7 @@ import { NotificationProvider } from "./context/NotificationContext";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import ProductShowcase from "./components/ProductShowcase/ProductShowcase";
+import EnsambleShowcase from "./components/Ensambles/EnsambleShowcase";
 import AuthPage from "./components/AuthPage/AuthPage";
 import CartSidebar from "./components/Cart/CartSidebar";
 import NotificationContainer from "./components/Notifications/NotificationContainer";
@@ -64,14 +65,7 @@ function App() {
 
           <ProductShowcase />
 
-          <section id="ensambles" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
-                Ensambles
-              </h2>
-              <p className="text-xl text-gray-600">Próximamente...</p>
-            </div>
-          </section>
+          <EnsambleShowcase />
 
           <section id="soporte" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
