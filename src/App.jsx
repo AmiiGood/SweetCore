@@ -11,6 +11,7 @@ import ContactSection from "./components/Contact/ContactSection";
 import AuthPage from "./components/AuthPage/AuthPage";
 import CartSidebar from "./components/Cart/CartSidebar";
 import NotificationContainer from "./components/Notifications/NotificationContainer";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -72,6 +73,8 @@ function App() {
           <SupportSection />
 
           <ContactSection />
+
+          <Footer />
 
           <CartSidebar isOpen={isCartOpen} onClose={toggleCart} />
 
