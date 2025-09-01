@@ -218,7 +218,6 @@ const EnsambleShowcase = () => {
       className="py-20 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -234,7 +233,6 @@ const EnsambleShowcase = () => {
             desde el primer día
           </p>
 
-          {/* Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               {
@@ -275,21 +273,18 @@ const EnsambleShowcase = () => {
           </div>
         </motion.div>
 
-        {/* Category Filter */}
         <CategorySelector
           categories={categories}
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
         />
 
-        {/* PCs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredEnsambles.map((ensamble, index) => (
             <EnsambleCard key={ensamble.id} ensamble={ensamble} index={index} />
           ))}
         </div>
 
-        {/* CTA Section */}
         <motion.div
           className="text-center mt-16 p-8 bg-gray-900 rounded-2xl text-white"
           initial={{ opacity: 0, y: 30 }}

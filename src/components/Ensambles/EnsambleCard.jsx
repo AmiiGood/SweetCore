@@ -175,7 +175,6 @@ export const EnsambleCard = ({ ensamble, index }) => {
 
   const CategoryIcon = getCategoryIcon();
 
-  // Preparar specs en el formato del ProductCard
   const specs = {
     cpu: ensamble.specs.cpu,
     gpu: ensamble.specs.gpu,

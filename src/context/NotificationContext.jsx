@@ -19,7 +19,7 @@ export const NotificationProvider = ({ children }) => {
     ({
       title,
       message,
-      type = "info", // info, success, warning, error
+      type = "info",
       duration = 5000,
       action = null,
       persistent = false,
@@ -38,7 +38,6 @@ export const NotificationProvider = ({ children }) => {
 
       setNotifications((prev) => [...prev, notification]);
 
-      // Auto-remove after duration (unless persistent)
       if (!persistent && duration > 0) {
         setTimeout(() => {
           removeNotification(id);
@@ -58,7 +57,6 @@ export const NotificationProvider = ({ children }) => {
     setNotifications([]);
   }, []);
 
-  // Convenience methods
   const showSuccess = useCallback(
     (title, message, options = {}) => {
       return addNotification({
@@ -77,7 +75,7 @@ export const NotificationProvider = ({ children }) => {
         title,
         message,
         type: "error",
-        duration: 8000, // Longer for errors
+        duration: 8000,
         ...options,
       });
     },
