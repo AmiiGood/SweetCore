@@ -41,6 +41,41 @@ const Hero = () => {
     }
   }, [displayText, isTyping, currentTitleIndex, titles]);
 
+  const smoothScrollTo = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      const startPosition = window.pageYOffset;
+      const distance = offsetPosition - startPosition;
+      const duration = Math.max(800, Math.min(1500, Math.abs(distance) / 2));
+      let start = null;
+
+      const easeInOutCubic = (t) => {
+        return t < 0.5
+          ? 4 * t * t * t
+          : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+      };
+
+      const animateScroll = (currentTime) => {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
+
+        window.scrollTo(0, startPosition + distance * easedProgress);
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+
+      requestAnimationFrame(animateScroll);
+    }
+  };
+
   return (
     <section className="pt-20 pb-16 min-h-screen flex items-center bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,19 +107,19 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              <a
-                href="#productos"
+              <button
+                onClick={() => smoothScrollTo("productos")}
                 className="btn btn-primary justify-center sm:justify-start"
               >
                 Ver catálogo
                 <ArrowRight size={20} />
-              </a>
-              <a
-                href="#ensambles"
+              </button>
+              <button
+                onClick={() => smoothScrollTo("ensambles")}
                 className="btn btn-secondary justify-center sm:justify-start"
               >
                 PCs armadas
-              </a>
+              </button>
             </motion.div>
 
             <motion.div

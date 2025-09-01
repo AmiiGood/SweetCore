@@ -7,6 +7,7 @@ import Hero from "./components/Hero/Hero";
 import ProductShowcase from "./components/ProductShowcase/ProductShowcase";
 import EnsambleShowcase from "./components/Ensambles/EnsambleShowcase";
 import SupportSection from "./components/Support/SupportSection";
+import ContactSection from "./components/Contact/ContactSection";
 import AuthPage from "./components/AuthPage/AuthPage";
 import CartSidebar from "./components/Cart/CartSidebar";
 import NotificationContainer from "./components/Notifications/NotificationContainer";
@@ -70,14 +71,7 @@ function App() {
 
           <SupportSection />
 
-          <section id="contacto" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
-                Contacto
-              </h2>
-              <p className="text-xl text-gray-600">Próximamente...</p>
-            </div>
-          </section>
+          <ContactSection />
 
           <CartSidebar isOpen={isCartOpen} onClose={toggleCart} />
 
