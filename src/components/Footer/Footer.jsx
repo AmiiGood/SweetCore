@@ -14,8 +14,6 @@ import {
   Truck,
   Shield,
   Headphones,
-  ArrowUp,
-  Heart,
 } from "lucide-react";
 
 const Footer = () => {
@@ -23,47 +21,21 @@ const Footer = () => {
 
   const footerSections = [
     {
-      title: "Productos",
+      title: "Navegación",
       links: [
-        { label: "Tarjetas Gráficas", href: "#productos" },
-        { label: "Procesadores", href: "#productos" },
-        { label: "Memoria RAM", href: "#productos" },
-        { label: "Almacenamiento", href: "#productos" },
-        { label: "Motherboards", href: "#productos" },
-        { label: "Fuentes de Poder", href: "#productos" },
-      ],
-    },
-    {
-      title: "Servicios",
-      links: [
-        { label: "Ensamblaje PC", href: "#ensambles" },
-        { label: "Configurador", href: "#" },
-        { label: "Soporte Técnico", href: "#soporte" },
-        { label: "Instalación", href: "#" },
-        { label: "Garantía", href: "#soporte" },
-        { label: "RMA", href: "#" },
-      ],
-    },
-    {
-      title: "Empresa",
-      links: [
-        { label: "Sobre Nosotros", href: "#" },
-        { label: "Blog", href: "#" },
-        { label: "Carreras", href: "#" },
-        { label: "Prensa", href: "#" },
-        { label: "Afiliados", href: "#" },
-        { label: "Mayoristas", href: "#" },
+        { label: "Productos", href: "#productos" },
+        { label: "Ensambles", href: "#ensambles" },
+        { label: "Soporte", href: "#soporte" },
+        { label: "Contacto", href: "#contacto" },
       ],
     },
     {
       title: "Ayuda",
       links: [
-        { label: "Centro de Soporte", href: "#soporte" },
-        { label: "Contacto", href: "#contacto" },
         { label: "FAQ", href: "#soporte" },
-        { label: "Envíos", href: "#" },
-        { label: "Devoluciones", href: "#" },
-        { label: "Términos", href: "#" },
+        { label: "Garantía", href: "#soporte" },
+        { label: "Soporte Técnico", href: "#soporte" },
+        { label: "Contacto", href: "#contacto" },
       ],
     },
   ];
@@ -98,32 +70,6 @@ const Footer = () => {
       subtext: "Múltiples métodos",
     },
   ];
-
-  const scrollToTop = () => {
-    const startPosition = window.pageYOffset;
-    const distance = startPosition;
-    const duration = Math.min(1500, Math.max(800, distance / 3));
-    let start = null;
-
-    const easeOutCubic = (t) => {
-      return 1 - Math.pow(1 - t, 3);
-    };
-
-    const animateScroll = (currentTime) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const easedProgress = easeOutCubic(progress);
-
-      window.scrollTo(0, startPosition - distance * easedProgress);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animateScroll);
-      }
-    };
-
-    requestAnimationFrame(animateScroll);
-  };
 
   const handleLinkClick = (href) => {
     if (href.startsWith("#")) {
@@ -167,15 +113,16 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white">
+      {/* Features de confianza */}
       <div className="border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {trustFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div
                   key={feature.text}
-                  className="flex items-center gap-3 text-center md:text-left justify-center md:justify-start"
+                  className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
@@ -184,12 +131,17 @@ const Footer = () => {
                   <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Icon size={20} className="text-gray-300" />
                   </div>
-                  <div className="hidden md:block">
+                  <div className="sm:block hidden">
                     <div className="font-semibold text-sm text-white">
                       {feature.text}
                     </div>
                     <div className="text-xs text-gray-400">
                       {feature.subtext}
+                    </div>
+                  </div>
+                  <div className="sm:hidden block">
+                    <div className="font-semibold text-xs text-white">
+                      {feature.text}
                     </div>
                   </div>
                 </motion.div>
@@ -199,10 +151,12 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Contenido principal del footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Logo y descripción - más espacio en desktop */}
           <motion.div
-            className="lg:col-span-2"
+            className="md:col-span-6 lg:col-span-5"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -217,8 +171,7 @@ const Footer = () => {
 
             <p className="text-gray-300 mb-6 leading-relaxed">
               Tu destino definitivo para componentes de PC de alta calidad.
-              Construye la PC de tus sueños con los mejores productos y el
-              soporte de expertos.
+              Construye la PC de tus sueños con los mejores productos.
             </p>
 
             <div className="space-y-2 mb-6">
@@ -247,8 +200,6 @@ const Footer = () => {
                     whileHover={{
                       scale: 1.1,
                       y: -2,
-                      rotate: [0, -10, 10, 0],
-                      transition: { rotate: { duration: 0.6 } },
                     }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -256,14 +207,9 @@ const Footer = () => {
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                      initial={{ scale: 0 }}
-                      whileHover={{ scale: 1 }}
-                    />
                     <Icon
                       size={16}
-                      className="text-gray-300 group-hover:text-white transition-colors duration-300 relative z-10"
+                      className="text-gray-300 group-hover:text-white transition-colors duration-300"
                     />
                   </motion.a>
                 );
@@ -271,95 +217,90 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {footerSections.map((section, sectionIndex) => (
-            <motion.div
-              key={section.title}
-              className="lg:col-span-1"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: (sectionIndex + 1) * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="font-bold text-white mb-4">{section.title}</h3>
-              <ul className="space-y-2">
-                {section.links.map((link, linkIndex) => (
-                  <motion.li
-                    key={link.label}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: linkIndex * 0.05, duration: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.button
-                      onClick={() => handleLinkClick(link.href)}
-                      className="text-gray-300 hover:text-white transition-all duration-300 text-sm relative group"
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span className="relative z-10">{link.label}</span>
-                      <motion.div
-                        className="absolute bottom-0 left-0 h-0.5 bg-white origin-left"
-                        initial={{ scaleX: 0 }}
-                        whileHover={{ scaleX: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </motion.button>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+          {/* Enlaces divididos en dos columnas en móvil */}
+          <div className="md:col-span-6 lg:col-span-7">
+            <div className="grid grid-cols-2 gap-8">
+              {footerSections.map((section, sectionIndex) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: (sectionIndex + 1) * 0.1,
+                    duration: 0.6,
+                  }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="font-bold text-white mb-4">{section.title}</h3>
+                  <ul className="space-y-2">
+                    {section.links.map((link, linkIndex) => (
+                      <motion.li
+                        key={link.label}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: linkIndex * 0.05, duration: 0.3 }}
+                        viewport={{ once: true }}
+                      >
+                        <motion.button
+                          onClick={() => handleLinkClick(link.href)}
+                          className="text-gray-300 hover:text-white transition-all duration-300 text-sm relative group"
+                          whileHover={{ x: 4 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <span className="relative z-10">{link.label}</span>
+                          <motion.div
+                            className="absolute bottom-0 left-0 h-0.5 bg-white origin-left"
+                            initial={{ scaleX: 0 }}
+                            whileHover={{ scaleX: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        </motion.button>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
+      {/* Footer bottom */}
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-gray-400">
-              <span>
+            <div className="text-center md:text-left">
+              <span className="text-sm text-gray-400">
                 © {currentYear} SweetCore. Todos los derechos reservados.
               </span>
-              <div className="flex gap-4">
-                <motion.button
-                  className="hover:text-white transition-colors duration-300 relative group"
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10">Privacidad</span>
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white origin-center"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
-                <motion.button
-                  className="hover:text-white transition-colors duration-300 relative group"
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10">Términos</span>
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white origin-center"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
-                <motion.button
-                  className="hover:text-white transition-colors duration-300 relative group"
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10">Cookies</span>
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white origin-center"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
-              </div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              <motion.button
+                className="text-sm text-gray-400 hover:text-white transition-colors duration-300 relative group"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="relative z-10">Privacidad</span>
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-white origin-center"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+              <motion.button
+                className="text-sm text-gray-400 hover:text-white transition-colors duration-300 relative group"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="relative z-10">Términos</span>
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-white origin-center"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
             </div>
           </div>
         </div>
